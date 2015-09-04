@@ -10,6 +10,7 @@
 		0358EAE91B9A1B7400BF5189 /* Date.h in Headers */ = {isa = PBXBuildFile; fileRef = 0358EAE81B9A1B7400BF5189 /* Date.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0358EAF01B9A1B7400BF5189 /* Date.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0358EAE51B9A1B7400BF5189 /* Date.framework */; };
 		0358EAF51B9A1B7400BF5189 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0358EAF41B9A1B7400BF5189 /* DateTests.swift */; };
+		0358EB021B9A1BEF00BF5189 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0358EB011B9A1BEF00BF5189 /* Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		0358EAEF1B9A1B7400BF5189 /* DateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0358EAF41B9A1B7400BF5189 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		0358EAF61B9A1B7400BF5189 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0358EB011B9A1BEF00BF5189 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				0358EAE81B9A1B7400BF5189 /* Date.h */,
+				0358EB011B9A1BEF00BF5189 /* Date.swift */,
 				0358EAEA1B9A1B7400BF5189 /* Info.plist */,
 			);
 			path = Date;
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0358EB021B9A1BEF00BF5189 /* Date.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
