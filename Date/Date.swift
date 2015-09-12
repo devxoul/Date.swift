@@ -59,6 +59,14 @@ public extension NSDate {
         self.init(timeIntervalSinceReferenceDate: interval)
     }
 
+    public class func date(year: Int, _ month: Int, _ day: Int) -> NSDate {
+        return NSDate(year: year, month: month, day: day)
+    }
+
+    public class func time(hours: Int, _ minutes: Int, _ seconds: Double) -> NSDate {
+        return NSDate(hours: hours, minutes: minutes, seconds: seconds)
+    }
+
 }
 
 
