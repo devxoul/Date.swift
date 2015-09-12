@@ -76,27 +76,27 @@ class DateTests: XCTestCase {
     }
 
     func test_dateWithYear() {
-        XCTAssertEqual(self.birthdate.year(2013).year, 2013)
+        XCTAssertEqual(self.birthdate.withYear(2013).year, 2013)
     }
 
     func test_dateWithMonth() {
-        XCTAssertEqual(self.birthdate.month(7).month, 7)
+        XCTAssertEqual(self.birthdate.withMonth(7).month, 7)
     }
 
     func test_dateWithDay() {
-        XCTAssertEqual(self.birthdate.day(24).day, 24)
+        XCTAssertEqual(self.birthdate.withDay(24).day, 24)
     }
 
     func test_dateWithHour() {
-        XCTAssertEqual(self.birthdate.hours(12).hours, 12)
+        XCTAssertEqual(self.birthdate.withHours(12).hours, 12)
     }
 
     func test_dateWithMinute() {
-        XCTAssertEqual(self.birthdate.minutes(34).minutes, 34)
+        XCTAssertEqual(self.birthdate.withMinutes(34).minutes, 34)
     }
 
     func test_dateWithSecond() {
-        XCTAssertEqual(self.birthdate.seconds(56).seconds, 56)
+        XCTAssertEqual(self.birthdate.withSeconds(56).seconds, 56)
     }
 
 
@@ -119,80 +119,80 @@ class DateTests: XCTestCase {
     // MARK:
 
     func test_afterYears() {
-        XCTAssertEqual(3.years.after(self.birthdate), self.birthdate.year(self.birthdate.year + 3))
+        XCTAssertEqual(3.years.after(self.birthdate), self.birthdate.withYear(self.birthdate.year + 3))
     }
 
     func test_afterMonths() {
-        XCTAssertEqual(2.months.after(self.birthdate), self.birthdate.month(self.birthdate.month + 2))
+        XCTAssertEqual(2.months.after(self.birthdate), self.birthdate.withMonth(self.birthdate.month + 2))
     }
 
     func test_afterDays() {
-        XCTAssertEqual(1.day.after(self.birthdate), self.birthdate.day(self.birthdate.day + 1))
+        XCTAssertEqual(1.day.after(self.birthdate), self.birthdate.withDay(self.birthdate.day + 1))
     }
 
     func test_afterHours() {
-        XCTAssertEqual(10.hours.after(self.birthdate), self.birthdate.hours(self.birthdate.hours + 10))
+        XCTAssertEqual(10.hours.after(self.birthdate), self.birthdate.withHours(self.birthdate.hours + 10))
     }
 
     func test_afterMinutes() {
-        XCTAssertEqual(11.minutes.after(self.birthdate), self.birthdate.minutes(self.birthdate.minutes + 11))
+        XCTAssertEqual(11.minutes.after(self.birthdate), self.birthdate.withMinutes(self.birthdate.minutes + 11))
     }
 
     func test_afterSeconds() {
-        XCTAssertEqual(12.seconds.after(self.birthdate), self.birthdate.seconds(self.birthdate.seconds + 12))
+        XCTAssertEqual(12.seconds.after(self.birthdate), self.birthdate.withSeconds(self.birthdate.seconds + 12))
     }
 
     func test_afterSeconds_float() {
-        XCTAssertEqual(13.5.seconds.after(self.birthdate), self.birthdate.seconds(self.birthdate.seconds + 13.5))
+        XCTAssertEqual(13.5.seconds.after(self.birthdate), self.birthdate.withSeconds(self.birthdate.seconds + 13.5))
     }
 
 
     // MARK:
 
     func test_beforeYears() {
-        XCTAssertEqual(3.years.before(self.birthdate), self.birthdate.year(self.birthdate.year - 3))
+        XCTAssertEqual(3.years.before(self.birthdate), self.birthdate.withYear(self.birthdate.year - 3))
     }
 
     func test_beforeMonths() {
-        XCTAssertEqual(2.months.before(self.birthdate), self.birthdate.month(self.birthdate.month - 2))
+        XCTAssertEqual(2.months.before(self.birthdate), self.birthdate.withMonth(self.birthdate.month - 2))
     }
 
     func test_beforeDays() {
-        XCTAssertEqual(1.day.before(self.birthdate), self.birthdate.day(self.birthdate.day - 1))
+        XCTAssertEqual(1.day.before(self.birthdate), self.birthdate.withDay(self.birthdate.day - 1))
     }
 
     func test_beforeHours() {
-        XCTAssertEqual(10.hours.before(self.birthdate), self.birthdate.hours(self.birthdate.hours - 10))
+        XCTAssertEqual(10.hours.before(self.birthdate), self.birthdate.withHours(self.birthdate.hours - 10))
     }
 
     func test_beforeMinutes() {
-        XCTAssertEqual(11.minutes.before(self.birthdate), self.birthdate.minutes(self.birthdate.minutes - 11))
+        XCTAssertEqual(11.minutes.before(self.birthdate), self.birthdate.withMinutes(self.birthdate.minutes - 11))
     }
 
     func test_beforeSeconds() {
-        XCTAssertEqual(12.seconds.before(self.birthdate), self.birthdate.seconds(self.birthdate.seconds - 12))
+        XCTAssertEqual(12.seconds.before(self.birthdate), self.birthdate.withSeconds(self.birthdate.seconds - 12))
     }
 
     func test_beforeSeconds_float() {
-        XCTAssertEqual(13.5.seconds.before(self.birthdate), self.birthdate.seconds(self.birthdate.seconds - 13.5))
+        XCTAssertEqual(13.5.seconds.before(self.birthdate), self.birthdate.withSeconds(self.birthdate.seconds - 13.5))
     }
 
 
     // MARK:
 
     func test_monthNthWeekday() {
-        XCTAssertEqual(NSDate.november.year(1968).first.saturday, NSDate.date(1968, 11, 2))
-        XCTAssertEqual(NSDate.january.year(1995).second.saturday, NSDate.date(1995, 1, 14))
-        XCTAssertEqual(NSDate.jan.year(1992).second.friday, NSDate.date(1992, 1, 10))
-        XCTAssertEqual(NSDate.july.year(2013).fourth.wednesday, NSDate.date(2013, 7, 24))
-        XCTAssertEqual(NSDate.december.year(2014).fourth.thursday, NSDate.date(2014, 12, 25))
-        XCTAssertEqual(NSDate.may.year(2016).fifth.monday, NSDate.date(2016, 5, 30))
-        XCTAssertEqual(NSDate.march.year(2015).last.tuesday, NSDate.date(2015, 3, 31))
-        XCTAssertEqual(NSDate.dec.year(1995).fifth.saturday, NSDate.date(1995, 12, 30))
-        XCTAssertEqual(NSDate.dec.year(1995).fifth.sunday, NSDate.date(1995, 12, 31))
-        XCTAssertNil(NSDate.feb.year(2013).fifth.sunday)
-        XCTAssertNil(NSDate.feb.year(1995).fifth.tuesday)
-        XCTAssertNil(NSDate.feb.year(1995).fifth.thursday)
+        XCTAssertEqual(NSDate.november.withYear(1968).first.saturday, NSDate.date(1968, 11, 2))
+        XCTAssertEqual(NSDate.january.withYear(1995).second.saturday, NSDate.date(1995, 1, 14))
+        XCTAssertEqual(NSDate.jan.withYear(1992).second.friday, NSDate.date(1992, 1, 10))
+        XCTAssertEqual(NSDate.july.withYear(2013).fourth.wednesday, NSDate.date(2013, 7, 24))
+        XCTAssertEqual(NSDate.december.withYear(2014).fourth.thursday, NSDate.date(2014, 12, 25))
+        XCTAssertEqual(NSDate.may.withYear(2016).fifth.monday, NSDate.date(2016, 5, 30))
+        XCTAssertEqual(NSDate.march.withYear(2015).last.tuesday, NSDate.date(2015, 3, 31))
+        XCTAssertEqual(NSDate.dec.withYear(1995).fifth.saturday, NSDate.date(1995, 12, 30))
+        XCTAssertEqual(NSDate.dec.withYear(1995).fifth.sunday, NSDate.date(1995, 12, 31))
+        XCTAssertNil(NSDate.feb.withYear(2013).fifth.sunday)
+        XCTAssertNil(NSDate.feb.withYear(1995).fifth.tuesday)
+        XCTAssertNil(NSDate.feb.withYear(1995).fifth.thursday)
     }
 
 }

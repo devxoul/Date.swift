@@ -100,27 +100,27 @@ public extension NSDate {
     }
     public var weekday: Int { return self.components(.Weekday).weekday }
 
-    public func year(year: Int) -> NSDate {
+    public func withYear(year: Int) -> NSDate {
         return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
-    public func month(month: Int) -> NSDate {
+    public func withMonth(month: Int) -> NSDate {
         return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
-    public func day(day: Int) -> NSDate {
+    public func withDay(day: Int) -> NSDate {
         return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
-    public func hours(hours: Int) -> NSDate {
+    public func withHours(hours: Int) -> NSDate {
         return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
-    public func minutes(minutes: Int) -> NSDate {
+    public func withMinutes(minutes: Int) -> NSDate {
         return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
-    public func seconds(seconds: Double) -> NSDate {
+    public func withSeconds(seconds: Double) -> NSDate {
         return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
@@ -181,12 +181,12 @@ public struct _DateTimeDelta {
 
     public func after(date: NSDate) -> NSDate {
         switch self.unit {
-        case NSCalendarUnit.Year: return date.year(date.year + Int(self.value))
-        case NSCalendarUnit.Month: return date.month(date.month + Int(self.value))
-        case NSCalendarUnit.Day: return date.day(date.day + Int(self.value))
-        case NSCalendarUnit.Hour: return date.hours(date.hours + Int(self.value))
-        case NSCalendarUnit.Minute: return date.minutes(date.minutes + Int(self.value))
-        case NSCalendarUnit.Second: return date.seconds(date.seconds + self.value)
+        case NSCalendarUnit.Year: return date.withYear(date.year + Int(self.value))
+        case NSCalendarUnit.Month: return date.withMonth(date.month + Int(self.value))
+        case NSCalendarUnit.Day: return date.withDay(date.day + Int(self.value))
+        case NSCalendarUnit.Hour: return date.withHours(date.hours + Int(self.value))
+        case NSCalendarUnit.Minute: return date.withMinutes(date.minutes + Int(self.value))
+        case NSCalendarUnit.Second: return date.withSeconds(date.seconds + self.value)
         default: return date
         }
     }
@@ -214,18 +214,18 @@ public func - (date: NSDate, delta: _DateTimeDelta) -> NSDate { return delta.bef
 
 public extension NSDate {
 
-    public class var january: NSDate { return NSDate.today.month(1).day(1) }
-    public class var february: NSDate { return NSDate.today.month(2).day(1) }
-    public class var march: NSDate { return NSDate.today.month(3).day(1) }
-    public class var april: NSDate { return NSDate.today.month(4).day(1) }
-    public class var may: NSDate { return NSDate.today.month(5).day(1) }
-    public class var june: NSDate { return NSDate.today.month(6).day(1) }
-    public class var july: NSDate { return NSDate.today.month(7).day(1) }
-    public class var august: NSDate { return NSDate.today.month(8).day(1) }
-    public class var september: NSDate { return NSDate.today.month(9).day(1) }
-    public class var october: NSDate { return NSDate.today.month(10).day(1) }
-    public class var november: NSDate { return NSDate.today.month(11).day(1) }
-    public class var december: NSDate { return NSDate.today.month(12).day(1) }
+    public class var january: NSDate { return NSDate.today.withMonth(1).withDay(1) }
+    public class var february: NSDate { return NSDate.today.withMonth(2).withDay(1) }
+    public class var march: NSDate { return NSDate.today.withMonth(3).withDay(1) }
+    public class var april: NSDate { return NSDate.today.withMonth(4).withDay(1) }
+    public class var may: NSDate { return NSDate.today.withMonth(5).withDay(1) }
+    public class var june: NSDate { return NSDate.today.withMonth(6).withDay(1) }
+    public class var july: NSDate { return NSDate.today.withMonth(7).withDay(1) }
+    public class var august: NSDate { return NSDate.today.withMonth(8).withDay(1) }
+    public class var september: NSDate { return NSDate.today.withMonth(9).withDay(1) }
+    public class var october: NSDate { return NSDate.today.withMonth(10).withDay(1) }
+    public class var november: NSDate { return NSDate.today.withMonth(11).withDay(1) }
+    public class var december: NSDate { return NSDate.today.withMonth(12).withDay(1) }
 
     public class var jan: NSDate { return self.january }
     public class var feb: NSDate { return self.february }
