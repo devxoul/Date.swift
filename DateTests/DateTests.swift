@@ -24,27 +24,95 @@ import XCTest
 @testable import Date
 
 class DateTests: XCTestCase {
+
+    /// 1995-01-14T13:07:24.920110
+    let birthdate = NSDate(timeIntervalSinceReferenceDate: -188250755.07989)
+
+
+    // MARK:
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func test_initWithDatetime() {
+        let date = NSDate(year: 1995, month: 1, day: 14, hour: 13, minute: 7, second: 24.920110)
+        XCTAssertEqual(date, self.birthdate)
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+
+    func test_initWithDate() {
+        let date = NSDate(year: 1995, month: 1, day: 14)
+        XCTAssertEqual(date, self.birthdate.date)
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+    func test_initWithTime() {
+        let date = NSDate(hour: 7, minute: 8, second: 9) // it doesn't take care of year, month and day
+        XCTAssertEqual(date.hour, 7)
+        XCTAssertEqual(date.minute, 8)
+        XCTAssertEqual(date.second, 9)
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+
+
+    // MARK:
+
+    func test_year() {
+        XCTAssertEqual(self.birthdate.year, 1995)
     }
-    
+
+    func test_month() {
+        XCTAssertEqual(self.birthdate.month, 1)
+    }
+
+    func test_day() {
+        XCTAssertEqual(self.birthdate.day, 14)
+    }
+
+    func test_hour() {
+        XCTAssertEqual(self.birthdate.hour, 13)
+    }
+
+    func test_minute() {
+        XCTAssertEqual(self.birthdate.minute, 7)
+    }
+
+    func test_second() {
+        XCTAssertEqual(Float(self.birthdate.second), 24.920110)
+    }
+
+    func test_dateWithYear() {
+        XCTAssertEqual(self.birthdate.year(2013).year, 2013)
+    }
+
+    func test_dateWithMonth() {
+        XCTAssertEqual(self.birthdate.month(7).month, 7)
+    }
+
+    func test_dateWithDay() {
+        XCTAssertEqual(self.birthdate.day(24).day, 24)
+    }
+
+    func test_dateWithHour() {
+        XCTAssertEqual(self.birthdate.hour(12).hour, 12)
+    }
+
+    func test_dateWithMinute() {
+        XCTAssertEqual(self.birthdate.minute(34).minute, 34)
+    }
+
+    func test_dateWithSecond() {
+        XCTAssertEqual(self.birthdate.second(56).second, 56)
+    }
+
+
+    // MARK:
+
+    func test_date() {
+        XCTAssertEqual(self.birthdate.date.year, 1995)
+        XCTAssertEqual(self.birthdate.date.month, 1)
+        XCTAssertEqual(self.birthdate.date.day, 14)
+        XCTAssertEqual(self.birthdate.date.hour, 0)
+        XCTAssertEqual(self.birthdate.date.minute, 0)
+        XCTAssertEqual(self.birthdate.date.second, 0)
+    }
+
+    func test_today() {
+        XCTAssertEqual(NSDate.today, NSDate().date)
+    }
+
 }
