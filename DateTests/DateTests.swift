@@ -25,8 +25,17 @@ import XCTest
 
 class DateTests: XCTestCase {
 
-    /// 1995-01-14T13:07:24.920110
-    let birthdate = NSDate(timeIntervalSinceReferenceDate: -188250755.07989)
+    let birthdate: NSDate = {
+        let components = NSDateComponents()
+        components.year = 1995
+        components.month = 1
+        components.day = 14
+        components.hour = 13
+        components.minute = 7
+        components.second = 24
+        components.nanosecond = 920110 * 1_000
+        return NSCalendar.currentCalendar().dateFromComponents(components)!
+    }()
 
 
     // MARK:
