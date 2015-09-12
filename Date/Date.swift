@@ -27,15 +27,15 @@ import Foundation
 
 public extension NSDate {
 
-    public convenience init(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Double) {
+    public convenience init(year: Int, month: Int, day: Int, hours: Int, minutes: Int, seconds: Double) {
         let components = NSDateComponents()
         components.year = year
         components.month = month
         components.day = day
-        components.hour = hour
-        components.minute = minute
-        components.second = Int(second)
-        components.nanosecond = Int((second - floor(second)) * 1_000_000_000)
+        components.hour = hours
+        components.minute = minutes
+        components.second = Int(seconds)
+        components.nanosecond = Int((seconds - floor(seconds)) * 1_000_000_000)
         let interval = NSCalendar.currentCalendar().dateFromComponents(components)?.timeIntervalSinceReferenceDate ?? 0
         self.init(timeIntervalSinceReferenceDate: interval)
     }
@@ -49,12 +49,12 @@ public extension NSDate {
         self.init(timeIntervalSinceReferenceDate: interval)
     }
 
-    public convenience init(hour: Int, minute: Int, second: Double) {
+    public convenience init(hours: Int, minutes: Int, seconds: Double) {
         let components = NSDateComponents()
-        components.hour = hour
-        components.minute = minute
-        components.second = Int(second)
-        components.nanosecond = Int((second - floor(second)) * 1_000_000_000)
+        components.hour = hours
+        components.minute = minutes
+        components.second = Int(seconds)
+        components.nanosecond = Int((seconds - floor(seconds)) * 1_000_000_000)
         let interval = NSCalendar.currentCalendar().dateFromComponents(components)?.timeIntervalSinceReferenceDate ?? 0
         self.init(timeIntervalSinceReferenceDate: interval)
     }
@@ -84,35 +84,35 @@ public extension NSDate {
     public var year: Int { return self.components(.Year).year }
     public var month: Int { return self.components(.Month).month }
     public var day: Int { return self.components(.Day).day }
-    public var hour: Int { return self.components(.Hour).hour }
-    public var minute: Int { return self.components(.Minute).minute }
-    public var second: Double {
+    public var hours: Int { return self.components(.Hour).hour }
+    public var minutes: Int { return self.components(.Minute).minute }
+    public var seconds: Double {
         let components = self.components([.Second, .Nanosecond])
         return Double(components.second) + Double(components.nanosecond) / 1_000_000_000
     }
 
     public func year(year: Int) -> NSDate {
-        return NSDate(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
+        return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
     public func month(month: Int) -> NSDate {
-        return NSDate(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
+        return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
     public func day(day: Int) -> NSDate {
-        return NSDate(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
+        return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
-    public func hour(hour: Int) -> NSDate {
-        return NSDate(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
+    public func hours(hours: Int) -> NSDate {
+        return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
-    public func minute(minute: Int) -> NSDate {
-        return NSDate(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
+    public func minutes(minutes: Int) -> NSDate {
+        return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
-    public func second(second: Double) -> NSDate {
-        return NSDate(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
+    public func seconds(seconds: Double) -> NSDate {
+        return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
     private func components(units: NSCalendarUnit) -> NSDateComponents {
@@ -175,9 +175,9 @@ public struct _DateTimeDelta {
         case NSCalendarUnit.Year: return date.year(date.year + Int(self.value))
         case NSCalendarUnit.Month: return date.month(date.month + Int(self.value))
         case NSCalendarUnit.Day: return date.day(date.day + Int(self.value))
-        case NSCalendarUnit.Hour: return date.hour(date.hour + Int(self.value))
-        case NSCalendarUnit.Minute: return date.minute(date.minute + Int(self.value))
-        case NSCalendarUnit.Second: return date.second(date.second + self.value)
+        case NSCalendarUnit.Hour: return date.hours(date.hours + Int(self.value))
+        case NSCalendarUnit.Minute: return date.minutes(date.minutes + Int(self.value))
+        case NSCalendarUnit.Second: return date.seconds(date.seconds + self.value)
         default: return date
         }
     }
