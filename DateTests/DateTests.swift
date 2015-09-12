@@ -177,4 +177,22 @@ class DateTests: XCTestCase {
         XCTAssertEqual(13.5.seconds.before(self.birthdate), self.birthdate.seconds(self.birthdate.seconds - 13.5))
     }
 
+
+    // MARK:
+
+    func test_monthNthWeekday() {
+        XCTAssertEqual(NSDate.november.year(1968).first.saturday, NSDate.date(1968, 11, 2))
+        XCTAssertEqual(NSDate.january.year(1995).second.saturday, NSDate.date(1995, 1, 14))
+        XCTAssertEqual(NSDate.jan.year(1992).second.friday, NSDate.date(1992, 1, 10))
+        XCTAssertEqual(NSDate.july.year(2013).fourth.wednesday, NSDate.date(2013, 7, 24))
+        XCTAssertEqual(NSDate.december.year(2014).fourth.thursday, NSDate.date(2014, 12, 25))
+        XCTAssertEqual(NSDate.may.year(2016).fifth.monday, NSDate.date(2016, 5, 30))
+        XCTAssertEqual(NSDate.march.year(2015).last.tuesday, NSDate.date(2015, 3, 31))
+        XCTAssertEqual(NSDate.dec.year(1995).fifth.saturday, NSDate.date(1995, 12, 30))
+        XCTAssertEqual(NSDate.dec.year(1995).fifth.sunday, NSDate.date(1995, 12, 31))
+        XCTAssertNil(NSDate.feb.year(2013).fifth.sunday)
+        XCTAssertNil(NSDate.feb.year(1995).fifth.tuesday)
+        XCTAssertNil(NSDate.feb.year(1995).fifth.thursday)
+    }
+
 }

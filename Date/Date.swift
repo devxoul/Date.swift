@@ -208,3 +208,82 @@ public struct _DateTimeDelta {
 public func + (date: NSDate, delta: _DateTimeDelta) -> NSDate { return delta.after(date) }
 public func + (delta: _DateTimeDelta, date: NSDate) -> NSDate { return delta.after(date) }
 public func - (date: NSDate, delta: _DateTimeDelta) -> NSDate { return delta.before(date) }
+
+
+// MARK: - Calendar
+
+public extension NSDate {
+
+    public class var january: NSDate { return NSDate.today.month(1).day(1) }
+    public class var february: NSDate { return NSDate.today.month(2).day(1) }
+    public class var march: NSDate { return NSDate.today.month(3).day(1) }
+    public class var april: NSDate { return NSDate.today.month(4).day(1) }
+    public class var may: NSDate { return NSDate.today.month(5).day(1) }
+    public class var june: NSDate { return NSDate.today.month(6).day(1) }
+    public class var july: NSDate { return NSDate.today.month(7).day(1) }
+    public class var august: NSDate { return NSDate.today.month(8).day(1) }
+    public class var september: NSDate { return NSDate.today.month(9).day(1) }
+    public class var october: NSDate { return NSDate.today.month(10).day(1) }
+    public class var november: NSDate { return NSDate.today.month(11).day(1) }
+    public class var december: NSDate { return NSDate.today.month(12).day(1) }
+
+    public class var jan: NSDate { return self.january }
+    public class var feb: NSDate { return self.february }
+    public class var mar: NSDate { return self.march }
+    public class var apr: NSDate { return self.april }
+    public class var jun: NSDate { return self.june }
+    public class var jul: NSDate { return self.july }
+    public class var aug: NSDate { return self.august }
+    public class var sep: NSDate { return self.september }
+    public class var oct: NSDate { return self.october }
+    public class var nov: NSDate { return self.november }
+    public class var dec: NSDate { return self.december }
+
+    public var first: _CalendarDelta { return self.calendarDelta(0) }
+    public var second: _CalendarDelta { return self.calendarDelta(1) }
+    public var third: _CalendarDelta { return self.calendarDelta(2) }
+    public var fourth: _CalendarDelta { return self.calendarDelta(3) }
+    public var fifth: _CalendarDelta { return self.calendarDelta(4) }
+    public var last: _CalendarDelta { return self.calendarDelta(-1) }
+
+    private func calendarDelta(ordinal: Int) -> _CalendarDelta {
+        return _CalendarDelta(date: self, ordinal: ordinal)
+    }
+
+}
+
+public struct _CalendarDelta {
+
+    public var date: NSDate
+
+    /// `0` for first and `-1` for last
+    public var ordinal: Int
+
+    public var sunday: NSDate? { return self.weekday(1) }
+    public var monday: NSDate? { return self.weekday(2) }
+    public var tuesday: NSDate? { return self.weekday(3) }
+    public var wednesday: NSDate? { return self.weekday(4) }
+    public var thursday: NSDate? { return self.weekday(5) }
+    public var friday: NSDate? { return self.weekday(6) }
+    public var saturday: NSDate? { return self.weekday(7) }
+
+    private func weekday(weekday: Int) -> NSDate? {
+        if self.ordinal == -1 {
+            for i in (1...5).reverse() {
+                if let date = _CalendarDelta(date: self.date, ordinal: i).weekday(weekday) {
+                    return date
+                }
+            }
+            return nil
+        }
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Year, .Month, .Day, .Weekday], fromDate: self.date)
+        let ordinal = (weekday >= components.weekday) ? self.ordinal : self.ordinal + 1
+        components.day += weekday + 7 * ordinal - components.weekday
+        if let date = calendar.dateFromComponents(components) where date.month == components.month {
+            return date
+        }
+        return nil
+    }
+
+}
