@@ -120,3 +120,82 @@ public extension NSDate {
     }
 
 }
+
+
+// MARK: - Relative datetime
+
+public extension IntegerLiteralType {
+
+    public var years: _DateTimeDelta { return _DateTimeDelta(self, .Year) }
+    public var months: _DateTimeDelta { return _DateTimeDelta(self, .Month) }
+    public var days: _DateTimeDelta { return _DateTimeDelta(self, .Day) }
+
+    public var hours: _DateTimeDelta { return _DateTimeDelta(self, .Hour) }
+    public var minutes: _DateTimeDelta { return _DateTimeDelta(self, .Minute)  }
+    public var seconds: _DateTimeDelta { return _DateTimeDelta(self, .Second) }
+
+    public var year: _DateTimeDelta { return self.years }
+    public var month: _DateTimeDelta { return self.months }
+    public var day: _DateTimeDelta { return self.days }
+
+    public var hour: _DateTimeDelta { return self.hours }
+    public var minute: _DateTimeDelta { return self.minutes }
+    public var second: _DateTimeDelta { return self.seconds }
+
+}
+
+public extension FloatLiteralType {
+
+    public var seconds: _DateTimeDelta { return _DateTimeDelta(self, .Second) }
+    public var second: _DateTimeDelta { return self.seconds }
+
+}
+
+public struct _DateTimeDelta {
+
+    public var value: NSTimeInterval
+    public var unit: NSCalendarUnit
+
+    public init(_ value: NSTimeInterval, _ unit: NSCalendarUnit) {
+        self.value = value
+        self.unit = unit
+    }
+
+    public init(_ value: IntegerLiteralType, _ unit: NSCalendarUnit) {
+        self.init(NSTimeInterval(value), unit)
+    }
+
+    private var negativeDelta: _DateTimeDelta {
+        return self.dynamicType.init(-self.value, self.unit)
+    }
+
+
+    public func after(date: NSDate) -> NSDate {
+        switch self.unit {
+        case NSCalendarUnit.Year: return date.year(date.year + Int(self.value))
+        case NSCalendarUnit.Month: return date.month(date.month + Int(self.value))
+        case NSCalendarUnit.Day: return date.day(date.day + Int(self.value))
+        case NSCalendarUnit.Hour: return date.hour(date.hour + Int(self.value))
+        case NSCalendarUnit.Minute: return date.minute(date.minute + Int(self.value))
+        case NSCalendarUnit.Second: return date.second(date.second + self.value)
+        default: return date
+        }
+    }
+
+    public func before(date: NSDate) -> NSDate {
+        return self.negativeDelta.after(date)
+    }
+
+    public var fromNow: NSDate {
+        return self.after(NSDate())
+    }
+
+    public var ago: NSDate {
+        return self.negativeDelta.fromNow
+    }
+
+}
+
+public func + (date: NSDate, delta: _DateTimeDelta) -> NSDate { return delta.after(date) }
+public func + (delta: _DateTimeDelta, date: NSDate) -> NSDate { return delta.after(date) }
+public func - (date: NSDate, delta: _DateTimeDelta) -> NSDate { return delta.before(date) }

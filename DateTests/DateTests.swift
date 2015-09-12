@@ -115,4 +115,66 @@ class DateTests: XCTestCase {
         XCTAssertEqual(NSDate.today, NSDate().date)
     }
 
+
+    // MARK:
+
+    func test_afterYears() {
+        XCTAssertEqual(3.years.after(self.birthdate), self.birthdate.year(self.birthdate.year + 3))
+    }
+
+    func test_afterMonths() {
+        XCTAssertEqual(2.months.after(self.birthdate), self.birthdate.month(self.birthdate.month + 2))
+    }
+
+    func test_afterDays() {
+        XCTAssertEqual(1.day.after(self.birthdate), self.birthdate.day(self.birthdate.day + 1))
+    }
+
+    func test_afterHours() {
+        XCTAssertEqual(10.hours.after(self.birthdate), self.birthdate.hour(self.birthdate.hour + 10))
+    }
+
+    func test_afterMinutes() {
+        XCTAssertEqual(11.minutes.after(self.birthdate), self.birthdate.minute(self.birthdate.minute + 11))
+    }
+
+    func test_afterSeconds() {
+        XCTAssertEqual(12.seconds.after(self.birthdate), self.birthdate.second(self.birthdate.second + 12))
+    }
+
+    func test_afterSeconds_float() {
+        XCTAssertEqual(13.5.seconds.after(self.birthdate), self.birthdate.second(self.birthdate.second + 13.5))
+    }
+
+
+    // MARK:
+
+    func test_beforeYears() {
+        XCTAssertEqual(3.years.before(self.birthdate), self.birthdate.year(self.birthdate.year - 3))
+    }
+
+    func test_beforeMonths() {
+        XCTAssertEqual(2.months.before(self.birthdate), self.birthdate.month(self.birthdate.month - 2))
+    }
+
+    func test_beforeDays() {
+        XCTAssertEqual(1.day.before(self.birthdate), self.birthdate.day(self.birthdate.day - 1))
+    }
+
+    func test_beforeHours() {
+        XCTAssertEqual(10.hours.before(self.birthdate), self.birthdate.hour(self.birthdate.hour - 10))
+    }
+
+    func test_beforeMinutes() {
+        XCTAssertEqual(11.minutes.before(self.birthdate), self.birthdate.minute(self.birthdate.minute - 11))
+    }
+
+    func test_beforeSeconds() {
+        XCTAssertEqual(12.seconds.before(self.birthdate), self.birthdate.second(self.birthdate.second - 12))
+    }
+
+    func test_beforeSeconds_float() {
+        XCTAssertEqual(13.5.seconds.before(self.birthdate), self.birthdate.second(self.birthdate.second - 13.5))
+    }
+
 }
