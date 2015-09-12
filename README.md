@@ -13,7 +13,7 @@ Installation
 - **For iOS 8+ projects:** Use [CocoaPods](https://cocoapods.org) with Podfile:
 
     ```ruby
-    pod 'Date.swift', '~> 0.1'
+    pod 'Date', '~> 0.1'
     ```
 
 
@@ -28,6 +28,8 @@ At a Glance
 -----------
 
 ```swift
+import Date
+
 NSDate(year: 1995, month: 1, day: 14, hours: 13, minutes: 7, seconds: 24.5)    // datetime
 
 NSDate(year: 1995, month: 1, day: 14)   // date
