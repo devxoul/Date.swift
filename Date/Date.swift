@@ -124,6 +124,13 @@ public extension NSDate {
         return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
     }
 
+    public func withWeekday(weekday: Int) -> NSDate! {
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Year, .Month, .Day, .Weekday], fromDate: self)
+        components.day += weekday - components.weekday
+        return calendar.dateFromComponents(components)!
+    }
+
     private func components(units: NSCalendarUnit) -> NSDateComponents {
         return NSCalendar.currentCalendar().components(units, fromDate: self)
     }
@@ -249,6 +256,15 @@ public extension NSDate {
     private func calendarDelta(ordinal: Int) -> _CalendarDelta {
         return _CalendarDelta(date: self, ordinal: ordinal)
     }
+
+
+    public class var sunday: NSDate? { return NSDate.today.withWeekday(1) }
+    public class var monday: NSDate? { return NSDate.today.withWeekday(2) }
+    public class var tuesday: NSDate? { return NSDate.today.withWeekday(3) }
+    public class var wednesday: NSDate? { return NSDate.today.withWeekday(4) }
+    public class var thursday: NSDate? { return NSDate.today.withWeekday(5) }
+    public class var friday: NSDate? { return NSDate.today.withWeekday(6) }
+    public class var saturday: NSDate? { return NSDate.today.withWeekday(7) }
 
 }
 

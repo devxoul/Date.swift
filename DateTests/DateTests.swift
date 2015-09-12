@@ -99,6 +99,12 @@ class DateTests: XCTestCase {
         XCTAssertEqual(self.birthdate.withSeconds(56).seconds, 56)
     }
 
+    func test_withWeekday() {
+        XCTAssertEqual(NSDate.date(2015, 09, 16).withWeekday(1), NSDate.date(2015, 9, 13))
+        XCTAssertEqual(NSDate.date(2015, 09, 16).withWeekday(2), NSDate.date(2015, 9, 14))
+        XCTAssertEqual(NSDate.date(2015, 09, 16).withWeekday(5), NSDate.date(2015, 9, 17))
+    }
+
 
     // MARK:
 
