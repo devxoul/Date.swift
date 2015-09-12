@@ -98,6 +98,7 @@ public extension NSDate {
         let components = self.components([.Second, .Nanosecond])
         return Double(components.second) + Double(components.nanosecond) / 1_000_000_000
     }
+    public var weekday: Int { return self.components(.Weekday).weekday }
 
     public func year(year: Int) -> NSDate {
         return NSDate(year: year, month: month, day: day, hours: hours, minutes: minutes, seconds: seconds)
