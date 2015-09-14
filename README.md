@@ -1,6 +1,7 @@
 Date.swift
 ==========
 
+![Swift 2.0](https://img.shields.io/badge/Swift-2.0-orange.svg)
 [![CocoaPods](http://img.shields.io/cocoapods/v/Date.svg?style=flat)](http://cocoapods.org/pods/Date)
 [![Build Status](http://img.shields.io/travis/devxoul/Date.swift/master.svg?style=flat)](https://travis-ci.org/devxoul/Date.swift)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/devxoul/Date.swift/master/LICENSE)
